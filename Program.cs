@@ -1,4 +1,2 @@
-﻿Game game = new Game();
-GameSerializer gameSerializer = new GameSerializer();
-
-game.StartGame();
+﻿Game game = new Game(100, 100, 1000);
+game.PlayGame();

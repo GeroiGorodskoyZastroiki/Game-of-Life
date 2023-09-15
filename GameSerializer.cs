@@ -6,16 +6,18 @@ public class GameSerializer
     Game _game;
     AnimatedGifCreator _gif;
 
-    public GameSerializer()
+    public GameSerializer(Game game)
     {
-        _game = new Game();
-        _gif = AnimatedGif.AnimatedGif.Create("game.gif", 33);
-        _game.
+        _game = game;
+        _gif = AnimatedGif.AnimatedGif.Create("Life.gif", 200); //создаём GIF файл
     }
 
-    void AddFrame (bool [,] arr)
+    public void AddFrame (bool [,] arr) //добавляет кадр в созданный GIF
     {
         var img = new Bitmap(_game.Width, _game.Height);
-        _gif.AddFrame(img, delay: -1, quality: GifQuality.Bit8);
+        for (int i = 0; i < _game.Width; i++)
+            for (int j = 0; j < _game.Height; j++)
+                img.SetPixel(i, j, arr[i,j] ? Color.Black : Color.White);
+        _gif.AddFrame(img, quality: GifQuality.Bit4);
     }
 }
